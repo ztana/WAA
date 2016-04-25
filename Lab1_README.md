@@ -13,4 +13,4 @@ And I got a some question I didn't found before:
 I have processRequest in my doPost. when I tried to forward to a jsp, it did not work in doPost, but worked in processRequest.
 
 I upload my lab to github, which is easy to read and can download if you want.
-which can be found in this link: [Link Text](https://github.com/ztana/WAA)
+which can be found in this link: [Link Text](https://github.com/ztana/WAA).
