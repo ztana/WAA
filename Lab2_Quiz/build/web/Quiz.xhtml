@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+      <title>Quiz</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h3>Have fun with NumberQuiz!</h3>
+            <p>Your current score is: </p>
+            <h:outputText value="#{quiz.numCorrect}" /><br />
+            Q:<h:outputText value="#{quiz.currentProblem.question}" /><br /><br />
+            <h:inputText value="#{quiz.tempAns}" required="true">
+                <f:convertNumber integerOnly="true" />
+            </h:inputText>
+            <h:outputText rendered="#{quiz.correct}" value='wrong answer!'/>
+            <h:commandButton value="hint" />
+            </h:inputText>
+            <p><h:commandButton value="Submit" action="#{quiz.processAnswer}"/></p>
+        </h:form>
+    </h:body>
+</html>
