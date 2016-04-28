@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Recommended Teas</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:dataTable value="#{form.recommenedType}" var="name">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{form.recommenedType.name}" 
+                                style="font-weight: bold"/>
+                    </f:facet>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+    
+</html>
