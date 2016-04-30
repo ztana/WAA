@@ -1,0 +1,5 @@
+
+11052014kl
+This is a solution from a prior class.  It is pretty good, but has some design flaws, particularly 
+regarding having business logic in getters.  I refactored one of these, but several still remain.
+Should fix later, or find or create another solution.

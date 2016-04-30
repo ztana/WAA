@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>#{msgs.welcomeTitle}</title>
+    </h:head>
+    <h:body>
+        <h1 align="center">
+            #{msgs.teaSelectionPage}
+        </h1>
+        <h:form>
+            #{msgs.teaCharacteristics}
+            <p>
+                #{msgs.color}:
+                <h:selectOneMenu value="#{expertBn.color}">
+                    <f:selectItems value="#{expertBn.teaColors}"/>
+                </h:selectOneMenu>
+            </p>
+            
+            <br/>
+            <br/>
+            <div style="align:center;">
+                <!-- determine the brands to display for the associated color.  Save them so they can be displayed in the listBrands page -->
+                 <h:commandButton value="#{msgs.submit}" action="#{expertBn.findBrands}"></h:commandButton> 
+            </div>
+        </h:form>
+    </h:body>
+</html>
+
