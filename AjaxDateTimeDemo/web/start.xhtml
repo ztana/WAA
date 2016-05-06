@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+   <h:head>
+      <h:outputStylesheet library="css" name="style.css"/>
+      <title>XMLHttpRequest Ajax</title>
+ 
+      <link href="styles.css" rel="stylesheet" type="text/css"/>
+      <script type="text/javascript" language="Javascript1.1">
+                var xhr;
+                var asy;
+                
+                
+                function changeAsy()
+                {
+                    asy = !asy;
+                }
+ 
+                function showDateAndTime() 
+                { 
+                   // request("date");
+                   /*
+                    var isFace = window.document.getElementById("useFaces");
+                    if(isFace) {
+                        sendRequest("dateAndTime.faces?param=date", // the URL
+                        processAjaxCall);   // the callback function
+                    }
+                    else {
+                        sendRequest("dateAndTime.ajax?param=date", // the URL
+                        processAjaxCall);   // the callback function
+                    }
+                    */
+                    
+                    
+                    sendRequest("select.ajax?param=date", // the URL
+                        processAjaxCall);   // the callback function
+                }
+                function showTem() {
+                    /*
+                    var isFace = window.document.getElementById("useFaces");
+                    if(isFace) {
+                        sendRequest("dateAndTime.faces?param=temp", // the URL
+                        processAjaxCall);   // the callback function
+                    }
+                    else {
+                        sendRequest("dateAndTime.ajax?param=temp", // the URL
+                        processAjaxCall);   // the callback function
+                    }
+                    */
+                   
+                    request("temp");
+                    sendRequest("select.ajax?param=temp", // the URL
+                                processAjaxCall);   // the callback function
+                }
+                
+                function request(parm) {
+                    var isFace = window.document.getElementById("useFaces");
+                    var url = isFace? "dateAndTime.faces":"dateAndTime.ajax"+"?param="+parm;
+                    sendRequest(url, // the URL
+                                processAjaxCall);   // the callback function
+                }
+ 
+                function sendRequest(url, handler) 
+                {
+                   initXHR();
+                   xhr.onreadystatechange = handler; // set callback function
+                  // if(asy)
+                   xhr.open("get", url, asy); // open asynchronous GET request
+                   xhr.send(null); // send the request without params
+                }
+ 
+                function initXHR() 
+                {
+                   if(window.XMLHttpRequest) {
+                      xhr = new XMLHttpRequest();
+                   }
+                   else if(window.ActiveXObject) {
+                      xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                   }
+                }
+ 
+                function processAjaxCall() 
+                {
+                   if(xhr.readyState == 4) 
+                   {  // if the request is finished...
+                      if(xhr.status == 200) // ...and everything's okay
+                      {
+                         // Get the dateDiv DIV and configure it
+                         // with the response text
+                        var dateDiv = window.document.getElementById("dateDIV");
+                        dateDiv.innerHTML = xhr.responseText;
+                      }
+                   }
+                }
+               
+      </script>
+    </h:head>
+    
+    <h:body styleClass="bodyColor"  >
+      <div class="banner">
+        <h:outputText value="Basic Ajax with a servlet"
+                      styleClass="bannerText"/>
+      </div>
+      
+      <h:form id="form">
+        <h:panelGrid columns='2'>
+          <h:outputText value='first'/>
+          <h:inputText id='txtFirst' value="#{pb.firstName}" /> 
+          <h:outputText value='last'/>
+          <h:inputText id='txtLast' value="#{pb.lastName}" />
+        </h:panelGrid>    
+        <h:outputText value="#{pb.fullName}"/><br/>
+        <label>
+            <h:selectBooleanCheckbox  onclick="changeAsy()">asynchronous</h:selectBooleanCheckbox> 
+        </label>
+        <br />
+        <label><input id="useFaces" type="radio" name="FaceOrSev" value="face" >Face</input></label>
+        <label><input type="radio" name="FaceOrSev" value="servlet" checked="checked" >Servlet</input></label>
+        
+        <h:commandButton type='submit' value='Submit' styleClass='button' action='person'/><br/>
+        <input type="button" value="Show Date and Time" onclick="showDateAndTime()" class="button"/>
+        <input type="button" value="Show Temperature" onclick="showTem()" class="button"/>
+      </h:form>
+      
+      <div id="dateDIV" class="dateDiv"/>
+    </h:body>
+</html> 
